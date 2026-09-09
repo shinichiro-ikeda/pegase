@@ -1,4 +1,2 @@
-include src/pegase/LICENSE
-include src/pegase/LICENSE.jp
-include src/pegase/README.md
+include README.ja.md
 include src/pegase/peg.peg
