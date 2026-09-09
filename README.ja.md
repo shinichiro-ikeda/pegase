@@ -2,20 +2,6 @@
 Parsing Expression Grammar Abstract Syntax Extension
 
 
-## License
-MIR License
-
-### [英語]
-https://opensource.org/license/mit
-
-### [日本語]
-https://licenses.opensource.jp/MIT/MIT.html
-
-
-## Author
-Shinichiro Ikeda
-
-
 ## 概要
 Pegaseは、マサチューセッツ工科大学(Massachusetts Institute of Technology)のBryan Fordが POPL 2004 (ACM SIGPLAN - SIGACT Symposium on Principles of Programming Languages)で発表したParsing Expression Grammars:
 A Recognition-Based Syntactic Foundationに基づき、構文解析モジュールとしてPythonで実装したものです。

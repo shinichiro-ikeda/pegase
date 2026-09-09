@@ -4,12 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pegase"
-version = "1.0.0"
+version = "1.0.1"
 description = "Parsing Expression Grammar Abstract Syntax Extension"
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [{name = "Shinichiro Ikeda"}]
 license = "MIT"
+license-files = ["LICENSE", "LICENSE.ja"]
 
 [tool.setuptools]
 package-dir = {"" = "src"}
