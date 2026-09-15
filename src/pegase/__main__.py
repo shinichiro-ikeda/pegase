@@ -146,7 +146,10 @@ if __name__ == '__main__':
 	# 評価結果をフォーマットして表示
 	if '--evaluate' in args:
 		print('---- evaluate ----')
-		print(json.dumps(R,indent=4) if '--format' in args else R)
+		try:
+			print(json.dumps(R,indent=4) if '--format' in args else R)
+		except TypeError:
+			print(R)
 		# 実行時間の表示
 		if '--elapsed' in args:
 			print('---- elapsed time ----')
