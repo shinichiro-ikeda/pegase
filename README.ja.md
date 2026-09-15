@@ -36,26 +36,26 @@ PEG = G()
 
 ソースコードを記述するプログラミング言語の文法定義(PEG文法で記述されたもの)を、このPEG文法オブジェクト(PEG)を用いて構文解析することで抽象構文木を取得し、それを評価することでプログラミング言語用の構文規則(R)を得ることができます。
 
-ここでは例として、四則演算の機能を持つ言語を定義し、`basic-calc.peg`として保存します。
+ここでは例として、四則演算の機能を持つ言語を定義し、`basic_calc.peg`として保存します。
 
-```basic-calc.peg
+```basic_calc.peg
 expr <- term (('+' / '-') term)*
 term <- factor (('*' / '/') factor)*
 factor <- [0-9]+ / '(' expr ')'
 ```
 
-この文法定義ファイル(basic-calc.peg)を先ほど作成したPEG文法オブジェクトのparseメソッドを使用して解析し、解析結果の抽象構文木(ST)を評価することでbasic-calc.pegの構文規則(R)を取得します。
+この文法定義ファイル(`basic_calc.peg`)を先ほど作成したPEG文法オブジェクトのparseメソッドを使用して解析し、解析結果の抽象構文木(ST)を評価することで`basic_calc.peg`の構文規則(R)を取得します。
 
 ```
-basic_ST = PEG.parse('basic-calc.peg')
+basic_ST = PEG.parse('basic_calc.peg')
 basic_R = basic_ST.evaluate()
 ```
 
 抽象構文木の各ノード毎の評価処理は、PEG文法の非終端記号名をクラスとしたPythonパッケージとして記述します。ここで作成する四則演算の例では、expr、term、factorのクラスを作成し、非終端記号オブジェクトとします。
 
-四則演算の機能を持つ言語の非終端記号オブジェクトのPythonパッケージを`basic-calc_VN.py`として作成します。
+四則演算の機能を持つ言語の非終端記号オブジェクトのPythonパッケージを`basic_calc_VN.py`として作成します。
 
-```python:basic-calc_VN.py
+```python:basic_calc_VN.py
 from functools import reduce
 from pegase import A
 
@@ -90,17 +90,17 @@ class _factor(A):
 
 非終端記号オブジェクト名、構文規則、構文解析の起点名を元に四則演算言語の文法オブジェクトを生成し、その文法オブジェクトのparseメソッドを用いて数式を解析した結果を評価することで、四則演算の結果を得ます。
 
-四則演算のメインプログラムを`basic-calc.py`として作成します。
+四則演算のメインプログラムを`basic_calc.py`として作成します。
 
-```python:basic-calc.py
+```python:basic_calc.py
 import sys
 from pegase import G
 
 if __name__ == '__main__':
   PEG = G()
-  basic_ST = PEG.parse('basic-calc.peg')
+  basic_ST = PEG.parse('basic_calc.peg')
   basic_R = basic_ST.evaluate()
-  basic_G = G('basic-calc_VN',basic_R,'expr')
+  basic_G = G('basic_calc_VN',basic_R,'expr')
   result = basic_G.parse(sys.argv[1]).evaluate()
   print(result)
 ```
@@ -108,7 +108,7 @@ if __name__ == '__main__':
 実行結果は以下の通りです。
 
 ```
-$ python basic-calc.py '1+2*3/(4-5)'
+$ python basic_calc.py '1+2*3/(4-5)'
 -5.0
 ```
 
