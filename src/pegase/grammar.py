@@ -140,6 +140,10 @@ class G:
 		return '{1}.{0.__class__.__name__}(\n  VN = {2},\n  R = {3},\n  eS = {4}\n)'.format(self,__package__,list(self.VN.keys()),list(self.R.keys()),self.eS)
 
 	def parse(self,src,forcefile=False):
+		# srcがパッケージ名とファイル名のtupleで指定された場合は、パッケージのディレクトリにあるファイルを使用する
+		if isinstance(src,tuple):
+			data_path = lambda package,resource: os.path.join(os.path.dirname(sys.modules[package].__file__),resource)
+			src = data_path(src[0],src[1])
 		if os.path.isfile(src):
 			with open(src,'r') as f:
 				stream = f.read()
